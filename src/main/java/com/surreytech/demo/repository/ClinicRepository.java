@@ -1,14 +1,15 @@
 package com.surreytech.demo.repository;
 
-
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.surreytech.demo.entity.Clinic;
 import com.surreytech.demo.entity.Doctor;
 
-public interface DoctorRepository extends JpaRepository<Doctor,Integer> {
-		Doctor findByName(String name);
-	List<Doctor> findByMailOrPhone(String mail, String phone);
+
+public interface ClinicRepository extends JpaRepository<Clinic, Integer> {
+	List<Clinic> findByDoctor(Doctor doctor);
+	
+	
 }

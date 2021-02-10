@@ -24,13 +24,19 @@ public class DoctorService {
 	public List<Doctor> getDoctors(){
 		return doctorRepository.findAll();
 	}
+	
 	public Doctor getDoctorById(int id) {
 		return doctorRepository.findById(id).orElse(null);
 	}
+	
+	
 	public Doctor getDoctorByName(String name) {
 		return doctorRepository.findByName(name);
 	}
-	
+
+	public List<Doctor> getByEmailOrPhone(String mail,String phone) {
+			return	doctorRepository.findByMailOrPhone(mail, phone);	
+	}
 	public String deleteDoctor(int id) {
 		doctorRepository.deleteById(id);
 		return "Deleted Doctor";
@@ -39,7 +45,8 @@ public class DoctorService {
 		Doctor existingDoctor=doctorRepository.findById(newDoctor.getId()).orElse(null);
 		
 		existingDoctor.setName(newDoctor.getName());
-		existingDoctor.setMail(newDoctor.getMail());	
+		existingDoctor.setMail(newDoctor.getMail());
+		existingDoctor.setPhone(newDoctor.getPhone());
 		return doctorRepository.save(existingDoctor);
 		
 	}
